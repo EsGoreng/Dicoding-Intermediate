@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Favorites</title>
+	<link rel="manifest" href="/manifest.json" />
+</head>
+<body>
+	<h1>Saved Stories</h1>
+	<ul id="favorites-list"></ul>
+
+	<script type="module">
+		import { getAllFavorites, deleteFavorite } from '../js/idb-favorites.js';
+		async function render() {
+			const list = document.getElementById('favorites-list');
+			list.innerHTML = '';
+			const items = await getAllFavorites();
+			if (items.length === 0) {
+				list.innerHTML = '<li>No saved items</li>';
+				return;
+			}
+			items.forEach(item => {
+				const li = document.createElement('li');
+				li.innerHTML = `
+					<strong>${item.title || 'Untitled'}</strong>
+					<button data-id="${item.id}" style="margin-left:8px">Remove</button>
+				`;
+				list.appendChild(li);
+				li.querySelector('button').addEventListener('click', async (e) => {
+					const id = e.currentTarget.getAttribute('data-id');
+					await deleteFavorite(id);
+					await render();
+				});
+			});
+		}
+		render();
+	</script>
+</body>
+</html>
