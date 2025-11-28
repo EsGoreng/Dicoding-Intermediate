@@ -93,6 +93,7 @@ export async function getAllStories() {
   try {
     const fetchResponse = await fetch(ENDPOINTS.STORIES, {
       headers: { Authorization: `Bearer ${accessToken}` },
+      signal: AbortSignal.timeout(10000), // 10 second timeout
     });
     const json = await fetchResponse.json();
 
@@ -137,6 +138,7 @@ export async function getStoryById(id) {
   try {
     const fetchResponse = await fetch(ENDPOINTS.STORY_DETAIL(id), {
       headers: { Authorization: `Bearer ${accessToken}` },
+      signal: AbortSignal.timeout(10000),
     });
     const json = await fetchResponse.json();
 
