@@ -1,0 +1,220 @@
+/* Navbar Push Notification Button */
+.push-notification-tools {
+  list-style: none;
+}
+
+.push-notification-navbar-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  color: #212529;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.push-notification-navbar-btn:hover {
+  color: #007bff;
+  transform: scale(1.1);
+}
+
+.push-notification-navbar-btn.active {
+  color: #007bff;
+}
+
+.push-notification-navbar-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.push-status-indicator {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #6c757d;
+  transition: all 0.3s ease;
+}
+
+.push-status-indicator.active {
+  background: #28a745;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(40, 167, 69, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+  }
+}
+
+/* Toast Notification */
+.push-notification-toast {
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  z-index: 9999;
+  transition: bottom 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.push-notification-toast.show {
+  bottom: 20px;
+}
+
+/* Full-page wrapper for detailed settings */
+.push-notification-wrapper {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  border-left: 4px solid #007bff;
+}
+
+.push-notification-header {
+  margin-bottom: 16px;
+}
+
+.push-notification-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #212529;
+}
+
+.push-notification-description {
+  margin: 0 0 16px 0;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.push-notification-toggle-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.push-toggle-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 2px solid #dee2e6;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.push-toggle-button:hover:not(:disabled) {
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.push-toggle-button.active {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.push-toggle-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.toggle-switch {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #dee2e6;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.push-toggle-button.active .toggle-switch {
+  background: white;
+}
+
+.push-status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #e9ecef;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.push-status-badge.active {
+  background: #d4edda;
+  color: #155724;
+}
+
+.push-error-message {
+  margin-top: 12px;
+  padding: 12px;
+  background: #f8d7da;
+  color: #721c24;
+  border-radius: 4px;
+  font-size: 14px;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .push-notification-wrapper {
+    padding: 16px;
+    margin: 16px 0;
+  }
+
+  .push-toggle-button {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .push-notification-toggle-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .push-notification-navbar-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+}
